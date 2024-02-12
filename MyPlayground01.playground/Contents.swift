@@ -1,35 +1,26 @@
 import UIKit
 
 /*
- ตัวดําเนินการเปรียบเทียบ (Comparison Operators)
+ ตัวดําเนินการเงื่อนไขแบบสามตัว (Ternary Conditional Operator)
 
- Swift รองรับตัวดําเนินการเปรียบเทียบดังนี้:
+ เป็นตัวดําเนินการใน Swift ที่ประกอบด้วย 3 ส่วน คล้ายกับคําถามที่มีคําตอบให้เลือก 2 คําตอบ มีรูปแบบดังนี้
 
- - เท่ากับ (==)
- - ไม่เท่ากับ (!=)
- - มากกว่า (>)
- - น้อยกว่า (<)
- - มากกว่าหรือเท่ากับ (>=)
- - น้อยกว่าหรือเท่ากับ (<=)
+ query ? answer1 : answer2
+
+ โดยหาก query เป็นจริง จะคืนค่า answer1 กลับมา แต่ถ้าเป็นเท็จจะคืนค่า answer2
 
  ตัวอย่าง:
 
- let x = "Class"
- if x == "Class" {
-   print("My Class")
- } else {
-   print("I’m sorry \(x), but I don’t recognize you")
- }
+ var height = cellIndex == 0 ? heightCell1 : heightOtherCell
 
- นอกจากนี้ ยังสามารถเปรียบเทียบ tuples ได้ด้วยหาก tuples ทั้งสองมีชนิดเดียวกัน
-
- (3, "Bird")  < (9, "Animal") // เปรียบเทียบเฉพาะค่าแรก ส่วน Bird และ Animal ไม่ถูกเช็ค
-
+ ช่วยทําให้โค้ดกระชับและอ่านง่ายขึ้น แต่ควรระวังการใช้มากเกินไปในบรรทัดเดียว ซึ่งอาจทําให้อ่านยาก ควรหาจุดสมดุลระหว่างความกระชับและความชัดเจนของโค้ด
  */
 
-let x = "Class"
-if x == "Class" {
-    print("My Class")
-} else {
-    print("I' m sorry \(x), but I dont't recognize you")
-}
+let heightCell1 = 50
+let heightCell2 = 40
+let heightCell3 = 30
+
+let currentCellIndex = 2
+
+let height = currentCellIndex == 1 ? heightCell1 : currentCellIndex == 2 ? heightCell2 : heightCell3
+print(height)
