@@ -1,19 +1,16 @@
 import UIKit
 
 /*
- Half-Open Range Operator (x..<y)
-
- "หมายความว่า" ตัวดําเนินการ Half-Open Range จะกําหนด Range ตั้งแต่ค่า x ไปจนถึงค่าก่อน y โดยไม่รวมค่า y เอง
-
- ยกตัวอย่าง:
- 1...5 หมายถึง Range ตั้งแต่ 1 ถึง 5 รวม 5 ด้วย
- แต่ 1..<5 หมายถึง Range ตั้งแต่ 1 ถึง 4 เท่านั้น ไม่ได้รวมค่า 5
-
- นั่นคือ ความหมายและความแตกต่างระหว่าง Closed Range กับ Half Open Range ครับ
-
-
+ One-sided Range คือ Range ที่มีค่าเพียงด้านเดียว
  */
 
-for index in 1..<3 {
-   print("\(index) times 3 is \(index * 3)")
+ let numbers = [1, 2, 3, 4, 5]
+// จะได้ Range ที่เริ่มต้นที่ index 2 (ค่า 3) ไปจนสุด array
+for n in numbers[2...] {
+   print(n)
+}
+
+// จะได้ Range ตั้งแต่ต้น array จนถึง index 2 (ค่า 3)
+for n in numbers[...2] {
+   print(n)
 }
