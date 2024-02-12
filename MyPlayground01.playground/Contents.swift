@@ -1,26 +1,28 @@
 import UIKit
 
 /*
- ตัวดําเนินการเงื่อนไขแบบสามตัว (Ternary Conditional Operator)
+ ตัวดําเนินการ Nil-Coalescing
 
- เป็นตัวดําเนินการใน Swift ที่ประกอบด้วย 3 ส่วน คล้ายกับคําถามที่มีคําตอบให้เลือก 2 คําตอบ มีรูปแบบดังนี้
+ เพื่อหลีกเลี่ยงการ Crash โปรแกรมจากค่า nil Swift มีตัวดําเนินการ Nil-Coalescing สําหรับใช้กับ Optional
 
- query ? answer1 : answer2
+ ตัวดําเนินการนี้เขียนเป็น x ?? y
 
- โดยหาก query เป็นจริง จะคืนค่า answer1 กลับมา แต่ถ้าเป็นเท็จจะคืนค่า answer2
+ ใช้เพื่อจัดการค่า nil ได้ดีขึ้น โดยจะประเมินค่า x ว่าเป็น nil หรือไม่ ถ้า x มีค่า จะ Unwrap Optional และคืนค่านั้นกลับมา ถ้า x เป็น nil จะคืนค่า y ทําให้เขียนโค้ดได้กระชับและอ่านง่ายขึ้น
 
  ตัวอย่าง:
 
- var height = cellIndex == 0 ? heightCell1 : heightOtherCell
+ ```
+ var x: Int? = nil
+ var y = 10
+ var safeValue = x ?? y // safeValue = 10
+ ```
 
- ช่วยทําให้โค้ดกระชับและอ่านง่ายขึ้น แต่ควรระวังการใช้มากเกินไปในบรรทัดเดียว ซึ่งอาจทําให้อ่านยาก ควรหาจุดสมดุลระหว่างความกระชับและความชัดเจนของโค้ด
+ หมายเหตุ: ถ้า x ไม่ใช่ nil ค่า y จะไม่ถูกประเมิน เรียกว่า Short-circuit Evaluation
  */
 
-let heightCell1 = 50
-let heightCell2 = 40
-let heightCell3 = 30
 
-let currentCellIndex = 2
+var x: Int? = nil
+var y = 10
+var safeValue = x ?? y
 
-let height = currentCellIndex == 1 ? heightCell1 : currentCellIndex == 2 ? heightCell2 : heightCell3
-print(height)
+print(safeValue)
