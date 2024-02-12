@@ -1,28 +1,20 @@
 import UIKit
 
 /*
- ตัวดําเนินการ Nil-Coalescing
+ ขออธิบายรายละเอียดเพิ่มเติมเกี่ยวกับ Closed Range Operator (x...y) ใน Swift ดังนี้
 
- เพื่อหลีกเลี่ยงการ Crash โปรแกรมจากค่า nil Swift มีตัวดําเนินการ Nil-Coalescing สําหรับใช้กับ Optional
+ เมื่อเขียนเป็น for index in 1...3 จะมีค่าของ index ดังนี้:
 
- ตัวดําเนินการนี้เขียนเป็น x ?? y
+ 1. index = 1 (รอบแรก)
+ 2. index = 2 (รอบที่สอง)
+ 3. index = 3 (รอบที่สาม)
 
- ใช้เพื่อจัดการค่า nil ได้ดีขึ้น โดยจะประเมินค่า x ว่าเป็น nil หรือไม่ ถ้า x มีค่า จะ Unwrap Optional และคืนค่านั้นกลับมา ถ้า x เป็น nil จะคืนค่า y ทําให้เขียนโค้ดได้กระชับและอ่านง่ายขึ้น
+ ดังนั้น Range 1...3 จะมีค่าตั้งแต่ 1 ถึง 3 รวมทั้ง 1, 2 และ 3 ด้วย ไม่ได้ขาดระหว่างกลาง
 
- ตัวอย่าง:
+ เราสามารถ Loop ผ่านค่าเหล่านี้ได้ และนําค่า index ในแต่ละรอบมาใช้งานต่อใน Loop ได้เลย
 
- ```
- var x: Int? = nil
- var y = 10
- var safeValue = x ?? y // safeValue = 10
- ```
-
- หมายเหตุ: ถ้า x ไม่ใช่ nil ค่า y จะไม่ถูกประเมิน เรียกว่า Short-circuit Evaluation
  */
 
-
-var x: Int? = nil
-var y = 10
-var safeValue = x ?? y
-
-print(safeValue)
+for index in 1...3 {
+   print("\(index) times 3 is \(index * 3)")
+}
