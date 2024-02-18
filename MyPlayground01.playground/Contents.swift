@@ -1,16 +1,40 @@
 import UIKit
 
 /*
- One-sided Range คือ Range ที่มีค่าเพียงด้านเดียว
+ ตัวดําเนินการตรรกะ (Logical Operators)
+
+ ตัวดําเนินการตรรกะใช้สําหรับดัดแปลงหรือรวมค่าตรรกะ (true และ false)
+
+ Swift รองรับตัวดําเนินการตรรกะ 3 ตัวดังนี้
+
+ 1. ตรรกะเท็จ (Logical NOT)  !x
+
+ 2. ตรรกะและ (Logical AND) x && y
+
+ 3. ตรรกะหรือ (Logical OR) x || y
+
+  ตัวดําเนินการเหล่านี้จะคืนค่า Boolean เพื่อใช้ในการตัดสินใจหรือควบคุมโค้ดต่อไป
+ 
  */
 
- let numbers = [1, 2, 3, 4, 5]
-// จะได้ Range ที่เริ่มต้นที่ index 2 (ค่า 3) ไปจนสุด array
-for n in numbers[2...] {
-   print(n)
-}
+let a = true
+let b = false
 
-// จะได้ Range ตั้งแต่ต้น array จนถึง index 2 (ค่า 3)
-for n in numbers[...2] {
-   print(n)
+// Logical NOT
+let x = !a // false
+let y = !b // true
+
+// Logical AND
+let z = a && b // false
+
+
+// Logical OR
+let k = a || b // true
+
+// Usage in if statement
+let age = 16
+if age >= 20 && age <= 30 {
+   print("age is between 20 and 30")
+} else {
+   print("age is not between 20 and 30")
 }
