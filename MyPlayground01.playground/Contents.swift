@@ -10,7 +10,7 @@ import UIKit
 let enterCodeCorrect = true
 let fingerprintMatch = false
 if enterCodeCorrect && fingerprintMatch {
-   print("Not in")
+   print("Welcome To Office")
 } else {
-   print("in come")
+   print("NO ACCESS")
 }
