@@ -1,16 +1,19 @@
 import UIKit
 
 /*
- ตัวดําเนินการตรรกะและ (Logical AND Operator)
- การประเมินผลเป็น true นั้น ทั้งสองค่าจะต้องเป็น true ถึงจะใช้ตัวดําเนินการ Logical AND (x && y) ได้ ซึ่งจะสร้างผลลัพธ์เป็น true หรือ false
+ ตัวดําเนินการตรรกะหรือ (Logical OR Operator)
+ 
+ เป็นตัวดําเนินการที่ทําให้สามารถสร้างนิพจน์ทางตรรกะ ที่ให้ค่า true ได้ เมื่อค่าเพียงข้างเดียวเป็น true  (x || y)
 
- ถ้าค่าใดค่าหนึ่งเป็น false ผลลัพธ์ทั้งหมดจะเป็น false เลย และไม่จําเป็นต้องตรวจสอบค่าอีกตัวหนึ่งอีก
+ ตัวดําเนินการนี้ใช้ Short Circuit Evaluation โดยหากฝั่งซ้ายเป็น true แล้ว ฝั่งขวาจะไม่ถูกประเมิน เพราะไม่สามารถเปลี่ยนแปลงผลลัพธ์ทั้งหมดได้แล้ว
+ 
  */
 
-let enterCodeCorrect = true
-let fingerprintMatch = false
-if enterCodeCorrect && fingerprintMatch {
-   print("Welcome To Office")
+let haskeycard = false
+let knowsPassword = true
+
+if haskeycard || knowsPassword {
+   print("knowsPassword")
 } else {
-   print("NO ACCESS")
+   print("haskeycard and knowsPassword")
 }
