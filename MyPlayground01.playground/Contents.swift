@@ -1,19 +1,31 @@
 import UIKit
 
 /*
- ตัวดําเนินการตรรกะหรือ (Logical OR Operator)
- 
- เป็นตัวดําเนินการที่ทําให้สามารถสร้างนิพจน์ทางตรรกะ ที่ให้ค่า true ได้ เมื่อค่าเพียงข้างเดียวเป็น true  (x || y)
+ การรวมตัวดําเนินการตรรกะ (Combining Logical Operators)
 
- ตัวดําเนินการนี้ใช้ Short Circuit Evaluation โดยหากฝั่งซ้ายเป็น true แล้ว ฝั่งขวาจะไม่ถูกประเมิน เพราะไม่สามารถเปลี่ยนแปลงผลลัพธ์ทั้งหมดได้แล้ว
- 
+ สามารถรวมตัวดําเนินการตรรกะเข้าด้วยกันเพื่อสร้างนิพจน์ที่ซับซ้อนขึ้นได้ เช่น
+
+ ```
+ if (enterCodeCorrect && fingerprintMatch)
+    || hasKeycard
+    || knowsPassword) {
+
+   // เข้ามาในนี้ถ้าเงื่อนไขใดเงื่อนไขหนึ่งเป็นจริง
+ }
+ ```
+
+ แต่ละตัวดําเนินการจะทํางานกับค่าเพียง 2 ค่าเท่านั้น ดังนั้นผลลัพธ์คือการเชื่อมโยงนิพจน์เล็กๆ หลายนิพจน์เข้าด้วยกัน
+
+ หมายเหตุ: ใน Swift ตัวดําเนินการ && และ || จะประเมินจากซ้ายไปขวา
  */
 
-let haskeycard = false
-let knowsPassword = true
+ let enteredPasscode = true
+ let fingerprintVerified = false
+ let haskeycard = true
+ let knowsBackupPassword = false
 
-if haskeycard || knowsPassword {
-   print("knowsPassword")
+if (enteredPasscode && fingerprintVerified) || haskeycard || (enteredPasscode && knowsBackupPassword) {
+   print("Welcome!")
 } else {
-   print("haskeycard and knowsPassword")
+   print("Access denied")
 }
