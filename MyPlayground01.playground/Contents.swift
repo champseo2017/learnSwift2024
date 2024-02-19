@@ -1,15 +1,17 @@
 import UIKit
 
 /*
- อักขระ (Characters)
- คุณสามารถเข้าถึงค่าของอักขระแต่ละตัวใน String ได้ โดยการวนลูป (Loop) ผ่าน String ด้วย for-in loop หรือ while loop
+ การเชื่อมต่อสตริงและอักขระ (Concatenated Strings)
  
- 
+ สามารถเชื่อมสตริงเข้าด้วยกันได้ โดยใช้ตัวดําเนินการ + เหมือนกับที่เราใช้กับตัวเลขในการคํานวณ
  */
+let string1 = "Hello"
+let string2 = " World"
+var combined = string1 + string2
 
-for char in "Hello" {
-   print(char)
-}
+print(combined)
 
-// นอกจากนี้ ยังสามารถ initialize Character เหมือนกับ String โดยกําหนดค่าให้กับ Type Annotation แบบ Character ได้เลย
-let exclaim: Character = "!"
+// นอกจากนี้ ยังสามารถเติมอักขระเข้าไปใน String ได้ด้วย method append()
+var text = "Hello"
+text.append("!")
+print(text)
