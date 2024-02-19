@@ -1,16 +1,15 @@
 import UIKit
 
 /*
- สตริงว่าง (Empty String)
- ใน Swift สามารถสร้าง String ว่างได้ง่ายๆ 2 วิธีดังนี้
+ ความสามารถในการเปลี่ยนแปลง String ใน Swift ให้เข้าใจง่ายขึ้นพร้อมแสดง Code ตัวอย่างด้วยนะครับ
+
+ ใน Swift String สามารถแก้ไขเปลี่ยนแปลงได้หากประกาศเป็น Variable
  
  */
 
-// 1. กําหนด String Literal ว่าง "" ให้กับตัวแปร
-// var empty = ""
+var message = "Hello"
+message += " World"
 
-// 2. ใช้ Initializer เพื่อสร้าง Instance ของ String ที่ไม่มีค่า
-var empty = String()
-
-// การใช้ String ว่าง มีประโยชน์อย่างมากในกรณีที่ต้องแทนค่าว่างๆ ใน String
-var firstName = "" // ยังไม่ได้กรอกชื่อ
+// แต่หากประกาศเป็น Constant แล้ว จะไม่สามารถเปลี่ยนแปลง String นั้นได้อีก
+//let message = "Hello"
+//message += " World"
