@@ -1,15 +1,15 @@
 import UIKit
 
 /*
- ความสามารถในการเปลี่ยนแปลง String ใน Swift ให้เข้าใจง่ายขึ้นพร้อมแสดง Code ตัวอย่างด้วยนะครับ
-
- ใน Swift String สามารถแก้ไขเปลี่ยนแปลงได้หากประกาศเป็น Variable
+ อักขระ (Characters)
+ คุณสามารถเข้าถึงค่าของอักขระแต่ละตัวใน String ได้ โดยการวนลูป (Loop) ผ่าน String ด้วย for-in loop หรือ while loop
+ 
  
  */
 
-var message = "Hello"
-message += " World"
+for char in "Hello" {
+   print(char)
+}
 
-// แต่หากประกาศเป็น Constant แล้ว จะไม่สามารถเปลี่ยนแปลง String นั้นได้อีก
-//let message = "Hello"
-//message += " World"
+// นอกจากนี้ ยังสามารถ initialize Character เหมือนกับ String โดยกําหนดค่าให้กับ Type Annotation แบบ Character ได้เลย
+let exclaim: Character = "!"
