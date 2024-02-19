@@ -1,17 +1,9 @@
 import UIKit
 
 /*
- การเชื่อมต่อสตริงและอักขระ (Concatenated Strings)
- 
- สามารถเชื่อมสตริงเข้าด้วยกันได้ โดยใช้ตัวดําเนินการ + เหมือนกับที่เราใช้กับตัวเลขในการคํานวณ
+ String interpolation เป็นวิธีในการสร้างข้อความใหม่ใน Swift โดยการรวมตัวแปร ค่าคงที่ และนิพจน์เข้าด้วยกันเป็นข้อความเดียว แต่ละรายการที่ถูกผนวกเข้าไปในข้อความคงที่จะถูกครอบด้วยวงเล็บ โดยมีเครื่องหมาย backslash () นำหน้า นี้ช่วยให้เกิดการสร้างข้อความที่มีความหลากหลายและเปลี่ยนแปลงได้ในระหว่างรัน:
  */
-let string1 = "Hello"
-let string2 = " World"
-var combined = string1 + string2
 
-print(combined)
-
-// นอกจากนี้ ยังสามารถเติมอักขระเข้าไปใน String ได้ด้วย method append()
-var text = "Hello"
-text.append("!")
-print(text)
+let addition = 3
+let sentence = "\(addition) plus 10 is \(addition + 10)"
+print(sentence)
