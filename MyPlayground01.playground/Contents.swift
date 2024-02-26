@@ -1,47 +1,79 @@
 import UIKit
 
 /*
- ความสามารถในการเปลี่ยนแปลงของคอลเลกชัน (Mutability) ใน Swift
- ใน Swift การทําให้ Array, Set และ Dictionary เป็น Immutable Collection ตลอดเวลาถือเป็นแนวปฏิบัติที่ดี
-
- การใช้ Immutable Collection จะช่วยเพิ่มประสิทธิภาพของคอลเลกชัน และทําให้การใช้หน่วยความจําและการทํางานมีประสิทธิภาพและคาดเดาได้มากขึ้น
- 
- - Mutable Collection คือ คอลเลกชันที่สามารถเปลี่ยนแปลงแก้ไขเนื้อหาภายในได้หลังจากสร้างแล้ว เช่น เพิ่ม ลบ หรือแก้ไขค่า
- - Immutable Collection คือ คอลเลกชันที่ไม่สามารถเปลี่ยนแปลงแก้ไขได้อีก หลังจากสร้างแล้วค่าจะคงที่
- ใน Swift จึงแนะนําให้ใช้ Immutable Collection เพื่อประสิทธิภาพสูงสุด
+ การใช้งาน method ต่างๆ ของ Array ใน Swift
  */
+var numbers = [5, 2, 7, 3]
+// นับจํานวนสมาชิกใน Array
+//print(numbers.count)
+// 4
 
-// Mutable Collection
-var mutableArry = [1, 2, 3]
-mutableArry.append(4)
-// [1, 2, 3, 4]
+// เพิ่มค่าเข้า Array
+//numbers.append(9)
+//print(numbers)
 
-var mutableSet = Set([1, 2, 3])
-mutableSet.insert(4)
-// [4, 2, 1, 3]
+// ลบค่าออกจาก Array ที่ Index
+//numbers.remove(at: 2)
+//print(numbers)
+// [5, 2, 3]
 
-var mutableDice = ["a": 1, "b": 2]
-mutableDice["c"] = 3
-// ["a": 1, "b": 2, "c": 3]
+// ลบค่าตามเงื่อนไข
+// $0 คือ ตัวแปรพิเศษที่ใช้แทนค่าแต่ละตัวใน Array ในการเรียกใช้ใน Closure
+// กล่าวคือ เมื่อ Loop ผ่าน Array แต่ละค่าจะถูกกําหนดให้ $0 ตามลําดับ เพื่อนํามาเปรียบเทียบเงื่อนไขใน Closure
+//numbers.removeAll(where: {$0 < 5})
+//print(numbers)
 
-// Immutable Collection
-let array1 = [1, 2, 3]
-// เพิ่มค่าโดยสร้าง Instance ใหม่
-let array2 = array1 + [4]
-// [1, 2, 3, 4]
+// Tuples in Array
+//let xy = [(1, 2), (3, 4)]
+//let resultXy = xy.map { (x, y) in
+//   return x + y
+//}
+//print(resultXy)
 
-// Immutable Dictionary
-let dict1 = ["a": 1, "b": 2]
-// เพิ่มค่าโดยสร้าง Instance ใหม่
-let dict2 = dict1.merging(["a": 3]) {$1}
-// $1 คือ closure syntax ที่ใช้กําหนดการ Handle Conflict ในกรณีที่ Key ซ้ํากันใน Dictionary
-// การกําหนด Closure { $1 } จะเป็นการ แทน ค่า value ที่ถูกเพิ่มเข้าไปใหม่ใน key ที่มีอยู่แล้ว
-// merging จะทําการ merge dict1 กับ dict ที่ส่งเข้ามาเป็น parameter โดยไม่สนใจ order ของ key
-// ["a": 3, "b": 2]
+// แทรกค่าเข้า Array ที่ตําแหน่ง Index
+//numbers.insert(4, at: 1)
+//print(numbers)
+// [5, 4, 2, 7, 3]
 
-// Immutable Set
-let immutableSet = Set([1, 2, 3])
+// เรียงลําดับ Array
+//numbers.sort()
+//print(numbers)
 
-// เพิ่มค่าโดยสร้าง Set ใหม่
-let newSet = immutableSet.union([4])
-print(newSet)
+// เรียงจากมากไปหาน้อย (descending)
+//numbers.sort(by: >)
+//print(numbers)
+
+// เรียงตาม property ของ struct/class:
+/*
+ เมื่อเรียกใช้ students.sort(by:) Swift จะทําการเปรียบเทียบ Object ใน Array ทีละคู่โดยวน Loop ทั้ง Array
+
+ นํา Student ตัวแรกมาเก็บไว้ในตัวแปร $0
+ นํา Student ตัวถัดไปมาเก็บไว้ในตัวแปร $1
+ นํา $0.age (age ของ Student ตัวแรก) มาเปรียบเทียบกับ $1.age (age ของ Student ตัวที่สอง)
+ หาก $0.age < $1.age เป็นจริง จะสลับตําแหน่งของสอง Object นี้ใน Array
+ ทําซ้ําไปเรื่อยๆ จน Sort ครบทั้ง Array ก็จะได้ Array ของ Students ที่เรียงลําดับตาม Age
+ */
+//struct Student {
+//   var name: String
+//   var age: Int
+//}
+//
+//var students = [
+//   Student(name: "Amy", age: 20),
+//   Student(name: "Brian", age: 18),
+//   Student(name: "Carl", age: 21),
+//   Student(name: "David", age: 22)
+//]
+//
+//students.sort(by: {$0.age < $1.age})
+//for student in students {
+//    print("Student(name: \"\(student.name)\", age: \(student.age))")
+//}
+
+// เรียงสุ่ม
+//numbers.shuffle()
+//print(numbers)
+
+// กลับการเรียงลําดับ
+//numbers.reverse()
+//print(numbers)
