@@ -1,79 +1,37 @@
 import UIKit
 
 /*
- การใช้งาน method ต่างๆ ของ Array ใน Swift
+ กลุ่ม (Set) เป็นคอลเลกชันที่เก็บค่าที่แตกต่างกัน ที่เป็นประเภทเดียวกัน และไม่มีลำดับ
+ Set<Element> โดยที่ Element คือประเภทขององค์ประกอบที่อนุญาตให้เก็บไว้
+ Set คืออะไร? Set คือกลุ่มของข้อมูลที่ไม่มีการซ้ำ และข้อมูลใน set จะเรียงลำดับอัตโนมัติ และไม่มีอันดับ
  */
-var numbers = [5, 2, 7, 3]
-// นับจํานวนสมาชิกใน Array
-//print(numbers.count)
-// 4
+var characters = Set<Character>() //  สร้างตัวแปร characters  เป็น Set<Character>  โดยไม่มีค่าเริ่มต้น
 
-// เพิ่มค่าเข้า Array
-//numbers.append(9)
-//print(numbers)
+//  เพิ่มตัวอักษรลงใน set
+characters.insert("a")
+characters.insert("b")
+characters.insert("c")
 
-// ลบค่าออกจาก Array ที่ Index
-//numbers.remove(at: 2)
-//print(numbers)
-// [5, 2, 3]
+//  ตรวจสอบว่า set  ว่างหรือไม่
+if characters.isEmpty {
+   print("Set ว่าง")
+} else {
+   print("Set มีข้อมูล")
+}
 
-// ลบค่าตามเงื่อนไข
-// $0 คือ ตัวแปรพิเศษที่ใช้แทนค่าแต่ละตัวใน Array ในการเรียกใช้ใน Closure
-// กล่าวคือ เมื่อ Loop ผ่าน Array แต่ละค่าจะถูกกําหนดให้ $0 ตามลําดับ เพื่อนํามาเปรียบเทียบเงื่อนไขใน Closure
-//numbers.removeAll(where: {$0 < 5})
-//print(numbers)
+//  ลบตัวอักษรออกจาก set
+characters.remove("a")
 
-// Tuples in Array
-//let xy = [(1, 2), (3, 4)]
-//let resultXy = xy.map { (x, y) in
-//   return x + y
-//}
-//print(resultXy)
+//  ตรวจสอบว่ามีตัวอักษรที่ต้องการใน set  หรือไม่
+if characters.contains("b") {
+   print("มีตัวอักษร b")
+} else {
+   print("ไม่มีตัวอักษร b")
+}
 
-// แทรกค่าเข้า Array ที่ตําแหน่ง Index
-//numbers.insert(4, at: 1)
-//print(numbers)
-// [5, 4, 2, 7, 3]
-
-// เรียงลําดับ Array
-//numbers.sort()
-//print(numbers)
-
-// เรียงจากมากไปหาน้อย (descending)
-//numbers.sort(by: >)
-//print(numbers)
-
-// เรียงตาม property ของ struct/class:
-/*
- เมื่อเรียกใช้ students.sort(by:) Swift จะทําการเปรียบเทียบ Object ใน Array ทีละคู่โดยวน Loop ทั้ง Array
-
- นํา Student ตัวแรกมาเก็บไว้ในตัวแปร $0
- นํา Student ตัวถัดไปมาเก็บไว้ในตัวแปร $1
- นํา $0.age (age ของ Student ตัวแรก) มาเปรียบเทียบกับ $1.age (age ของ Student ตัวที่สอง)
- หาก $0.age < $1.age เป็นจริง จะสลับตําแหน่งของสอง Object นี้ใน Array
- ทําซ้ําไปเรื่อยๆ จน Sort ครบทั้ง Array ก็จะได้ Array ของ Students ที่เรียงลําดับตาม Age
- */
-//struct Student {
-//   var name: String
-//   var age: Int
-//}
-//
-//var students = [
-//   Student(name: "Amy", age: 20),
-//   Student(name: "Brian", age: 18),
-//   Student(name: "Carl", age: 21),
-//   Student(name: "David", age: 22)
-//]
-//
-//students.sort(by: {$0.age < $1.age})
-//for student in students {
-//    print("Student(name: \"\(student.name)\", age: \(student.age))")
-//}
-
-// เรียงสุ่ม
-//numbers.shuffle()
-//print(numbers)
-
-// กลับการเรียงลําดับ
-//numbers.reverse()
-//print(numbers)
+//  ตรวจสอบว่า set  มีตัวอักษรที่ไม่มีอยู่ใน set  หรือไม่
+if !characters.contains("d") {
+   print("ไม่มีตัวอักษร d")
+} else {
+   print("มีตัวอักษร d")
+}
