@@ -1,37 +1,23 @@
 import UIKit
 
 /*
- กลุ่ม (Set) เป็นคอลเลกชันที่เก็บค่าที่แตกต่างกัน ที่เป็นประเภทเดียวกัน และไม่มีลำดับ
- Set<Element> โดยที่ Element คือประเภทขององค์ประกอบที่อนุญาตให้เก็บไว้
- Set คืออะไร? Set คือกลุ่มของข้อมูลที่ไม่มีการซ้ำ และข้อมูลใน set จะเรียงลำดับอัตโนมัติ และไม่มีอันดับ
+ ใน Swift, ฐานข้อมูล (Dictionary) เก็บความสัมพันธ์ระหว่างคีย์ (keys) และค่า (values)
  */
-var characters = Set<Character>() //  สร้างตัวแปร characters  เป็น Set<Character>  โดยไม่มีค่าเริ่มต้น
+//  สร้างฐานข้อมูลว่างของประเภท [String: String]
+// ส่วน [:] ใน var roads: [String: String] = [:] นั้นเป็น syntax ที่ใช้ในการสร้างฐานข้อมูล (Dictionaries) ว่างใน Swift. ถ้าเราต้องการสร้างฐานข้อมูลที่ไม่มีคู่คีย์-ค่าใดๆ ในตอนแรก เราจะใช้ [:]
+var roads: [String: String] = [:]
 
-//  เพิ่มตัวอักษรลงใน set
-characters.insert("a")
-characters.insert("b")
-characters.insert("c")
+//  เพิ่มคู่คีย์-ค่าลงในฐานข้อมูล
+roads["ABC"] = "Grand Trunk Road"
+roads["BCE"] = "Delhi"
 
-//  ตรวจสอบว่า set  ว่างหรือไม่
-if characters.isEmpty {
-   print("Set ว่าง")
-} else {
-   print("Set มีข้อมูล")
-}
+//  เพิ่มคู่คีย์-ค่าใหม่ด้วย syntax  ของ subscript
+roads["PVC"] = "MJ Road"
 
-//  ลบตัวอักษรออกจาก set
-characters.remove("a")
+//  แสดงจำนวนของคู่คีย์-ค่าในฐานข้อมูล
+print(roads.count)
 
-//  ตรวจสอบว่ามีตัวอักษรที่ต้องการใน set  หรือไม่
-if characters.contains("b") {
-   print("มีตัวอักษร b")
-} else {
-   print("ไม่มีตัวอักษร b")
-}
-
-//  ตรวจสอบว่า set  มีตัวอักษรที่ไม่มีอยู่ใน set  หรือไม่
-if !characters.contains("d") {
-   print("ไม่มีตัวอักษร d")
-} else {
-   print("มีตัวอักษร d")
+//  วนผ่านคู่คีย์-ค่าในฐานข้อมูลด้วย loop for-in
+for (roadsCode, roadsName) in roads {
+   print("\(roadsCode): \(roadsName)")
 }
