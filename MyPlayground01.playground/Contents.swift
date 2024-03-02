@@ -1,22 +1,27 @@
 import UIKit
 
 /*
- ลูป While และ Repeat-While
+ 
  */
 
-// While loop
-//var number = 5
-//while number > 0 {
-//   print(number)
-//   number -= 1
+// if-else
+//var temperature = 30
+//if temperature > 25 {
+//   print("It' s warm")
+//} else if temperature < 15 {
+//   print("It's cold")
+//} else {
+//   print("It's nice out")
 //}
-// จะพิมพ์ 5, 4, 3, 2, 1
+// จะพิมพ์ "It's warm"
 
-// Repeat-While loop
-var number = 5
-repeat {
-   print(number)
-   number -= 1
-} while number > 0
-// จะพิมพ์ 5, 4, 3, 2, 1
-// Repeat-While, คำสั่งภายในลูปจะถูกดำเนินการก่อนและจากนั้นเงื่อนไขจะถูกประเมิน หากเงื่อนไขยังคงเป็นจริง, การทำซ้ำจะดำเนินต่อไป
+// switch
+//let someCharacter: Character = "e"
+//switch someCharacter {
+//case "a", "e", "i", "o", "u":
+//   print("\(someCharacter) is a vowel")
+//case "b", "c", "d", "f", "g":
+//   print("\(someCharacter) is a consonant")
+//default:
+//   print("\(someCharacter) is not a vowel")
+//}
