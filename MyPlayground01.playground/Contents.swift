@@ -1,23 +1,70 @@
 import UIKit
 
 /*
- ใน Swift, ฐานข้อมูล (Dictionary) เก็บความสัมพันธ์ระหว่างคีย์ (keys) และค่า (values)
+ Control flow
  */
-//  สร้างฐานข้อมูลว่างของประเภท [String: String]
-// ส่วน [:] ใน var roads: [String: String] = [:] นั้นเป็น syntax ที่ใช้ในการสร้างฐานข้อมูล (Dictionaries) ว่างใน Swift. ถ้าเราต้องการสร้างฐานข้อมูลที่ไม่มีคู่คีย์-ค่าใดๆ ในตอนแรก เราจะใช้ [:]
-var roads: [String: String] = [:]
 
-//  เพิ่มคู่คีย์-ค่าลงในฐานข้อมูล
-roads["ABC"] = "Grand Trunk Road"
-roads["BCE"] = "Delhi"
+// For-in loop
+//for index in 1...5 {
+//   print("\(index) times 5 is \(index * 5)")
+//}
 
-//  เพิ่มคู่คีย์-ค่าใหม่ด้วย syntax  ของ subscript
-roads["PVC"] = "MJ Road"
+// ใช้ for-in loop เพื่อทำซ้ำโค้ดกับข้อมูลที่เปลี่ยนแปลงไป
 
-//  แสดงจำนวนของคู่คีย์-ค่าในฐานข้อมูล
-print(roads.count)
+// While loop
+//var n = 2
+//while n < 100 {
+//   n *= 2
+//}
+//print(n)
+// ใช้ while loop เพื่อทำซ้ำโค้ดจนกว่าเงื่อนไขจะเป็น false
 
-//  วนผ่านคู่คีย์-ค่าในฐานข้อมูลด้วย loop for-in
-for (roadsCode, roadsName) in roads {
-   print("\(roadsCode): \(roadsName)")
+// if
+//var temperature = 30
+//if temperature > 25 {
+//   print("It' s warm")
+//} else {
+//   print("It's not that warm")
+//}
+// ใช้ if เพื่อเลือกทำโค้ดบางส่วนตามเงื่อนไข
+
+// Guard
+//func greet(person: [String: String]) {
+//   guard let name = person["name"] else {
+//      return
+//   }
+//   print("Hello \(name)!")
+//}
+//// ตัวอย่างการเรียกใช้ฟังก์ชัน greet
+//greet(person: ["name": "John"]) // จะแสดง "Hello John!"
+//greet(person: ["age" : "30"]) // ไม่แสดงอะไรเลย เพราะไม่มี key "name"
+
+// Switch
+//let someCharacter: Character = "z"
+//switch someCharacter {
+//case "a", "e", "i", "o", "u" :
+//   print("\(someCharacter) is a vowel")
+//default:
+//   print("\(someCharacter) is not a vowel")
+//}
+// ใช้ switch เพื่อเลือกทำโค้ดบางส่วนตามค่าของตัวแปร
+
+// Break
+//var count = 0
+//while true {
+//   count += 1
+//   if count > 3 {
+//      break
+//   }
+//   print(count)
+//}
+// ใช้ break เพื่อออกจาก loop
+
+// Continue
+for i in 1...5 {
+   if i % 2 == 0 {
+      continue
+   }
+   print(i)
 }
+// ใช้ continue เพื่อข้ามไปยังการทำซ้ำถัดไปของ loop
