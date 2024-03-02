@@ -1,17 +1,22 @@
 import UIKit
 
 /*
- ลูป For-in ใช้เพื่อทำซ้ำการดำเนินการกับลำดับของข้อมูล, เช่น รายการในอาร์เรย์, ช่วงของตัวเลข, หรือรายการของตัวอักษรในประโยค
+ ลูป While และ Repeat-While
  */
 
-//let names = ["Ram", "Shaym", "Ajay", "Sunita"]
-//for name in names {
-//   print("Hey \(name)!")
+// While loop
+//var number = 5
+//while number > 0 {
+//   print(number)
+//   number -= 1
 //}
-// จะแสดง "Hey, Ram!", "Hey, Shaym!", "Hey, Ajay!", "Hey, Sunita!"
+// จะพิมพ์ 5, 4, 3, 2, 1
 
-// for-in กับช่วงของตัวเลข
-//for index in 1...4 {
-//   print("\(index) times 4 is \(index * 4)")
-//}
-// จะแสดง "1 times 4 is 4", "2 times 4 is 8", "3 times 4 is 12", "4 times 4 is 16"
+// Repeat-While loop
+var number = 5
+repeat {
+   print(number)
+   number -= 1
+} while number > 0
+// จะพิมพ์ 5, 4, 3, 2, 1
+// Repeat-While, คำสั่งภายในลูปจะถูกดำเนินการก่อนและจากนั้นเงื่อนไขจะถูกประเมิน หากเงื่อนไขยังคงเป็นจริง, การทำซ้ำจะดำเนินต่อไป
