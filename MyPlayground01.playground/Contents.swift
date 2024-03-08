@@ -1,16 +1,23 @@
 import UIKit
 
 /*
- fallthrough ใน Swift คือคำสั่งที่ใช้ในคำสั่ง switch เพื่อบอกให้โปรแกรมตกผ่านไปยัง case ถัดไปโดยไม่ต้องตรวจสอบเงื่อนไขของ case นั้นๆ
+ Early exit หรือการออกจากฟังก์ชันหรือบล็อกของโค้ดก่อนเวลาใน Swift สามารถทำได้โดยใช้คำสั่ง guard
+ guard จะมีส่วนของ else เสมอ ส่วนของ else นี้จะระบุโค้ดที่ควรจะถูกทำงานหากเงื่อนไขของ guard ไม่เป็นจริง
  */
 
-let integerToCheck = 5
-var sentence = "The number \(integerToCheck) is"
-switch integerToCheck {
-case 2, 3, 5, 7:
-   sentence += " a prime number, and also"
-   fallthrough // ใช้ fallthrough เพื่อตกผ่านไปยัง case ถัดไป
-default:
-   sentence += " an interger"
+/*
+ ส่วน _ ใน func checkNumber(_ number: Int) -> Bool? ใช้เพื่อระบุว่าเมื่อเรียกใช้ฟังก์ชันนี้ คุณไม่จำเป็นต้องระบุชื่อพารามิเตอร์ของอาร์กิวเมนต์ที่ส่งเข้าไปในฟังก์ชัน มันเป็นการใช้งานที่เรียกว่า "Anonymous Parameter Names" หรือ "ไม่ระบุชื่อพารามิเตอร์" ใน Swift ทำให้การเรียกใช้ฟังก์ชันดูเรียบง่ายและสะอาดขึ้น เพราะไม่ต้องระบุชื่อพารามิเตอร์เมื่อเรียกใช้
+ */
+func checkNumber(_ number: Int) -> Bool? {
+   guard number >= 0 else {
+      return nil // หากเงื่อนไขไม่เป็นจริง ฟังก์ชันจะ return nil
+   }
+   // โค้ดบล็อกนี้จะถูกทำงานหากเงื่อนไขเป็นจริง
+   return true
 }
-print(sentence)
+
+// ตัวอย่างการเรียกใช้ฟังก์ชัน
+// ตัวอย่างการเรียกใช้ฟังก์ชันโดยไม่ต้องระบุชื่อพารามิเตอร์
+let result: Any = checkNumber(-2) ?? false // แทนที่จะเป็น checkNumber(number: -2)
+// result จะมีค่าเป็น nil เพราะ number มีค่าน้อยกว่า 0
+print(result)
