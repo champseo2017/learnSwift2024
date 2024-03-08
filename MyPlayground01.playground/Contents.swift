@@ -2,27 +2,27 @@ import UIKit
 
 /*
  Function Returning a Function
+ 
+ // _operation: (Int, Int) -> Int
+ // หมายถึงพารามิเตอร์ของฟังก์ชันที่ชื่อว่า _operation ซึ่งเป็นฟังก์ชันที่รับค่า Int สองตัวและคืนค่าเป็น Int
+
+ // ส่วนของ "_" (underscore) ที่อยู่หน้าชื่อ operation ใช้เพื่อบอกว่าเมื่อเรียกใช้ฟังก์ชัน applyOperation ไม่จำเป็นต้องระบุชื่อพารามิเตอร์
+ // นี่เป็นการใช้งานที่เรียกว่า "Anonymous Parameter Names" ใน Swift ทำให้การเรียกใช้ฟังก์ชันสะอาดและเรียบง่ายขึ้น
+ 
+ // toOperand และ andOperand เป็นส่วนของการประกาศพารามิเตอร์ในฟังก์ชัน applyOperation
+ // พวกมันเป็นชื่อที่ใช้เพื่ออธิบายวัตถุประสงค์ของพารามิเตอร์แต่ละตัวให้ชัดเจนขึ้น
  */
 
-// ฟังก์ชัน makeAdder รับพารามิเตอร์ amount และคืนค่าเป็นฟังก์ชันอื่น (ฟังก์ชัน adder)
-/*
- `(amount: Int) -> (Int) -> Int` คือประกาศของฟังก์ชันใน Swift ที่แสดงถึงประเภทของฟังก์ชัน `makeAdder` โดยมีรายละเอียดดังนี้:
 
- - `amount: Int` หมายถึง `makeAdder` รับพารามิเตอร์ `amount` ที่เป็นประเภท `Int` เข้ามา
-
- - `-> (Int) -> Int` หมายถึง `makeAdder` จะคืนค่าเป็นฟังก์ชันอื่น ซึ่งฟังก์ชันนั้นรับพารามิเตอร์เป็น `Int` และคืนค่าเป็น `Int`
-
- โดยสรุป, `(amount: Int) -> (Int) -> Int` บอกว่า `makeAdder` เป็นฟังก์ชันที่รับ `Int` หนึ่งตัว (คือ `amount`) และคืนค่าเป็นฟังก์ชันอื่นที่รับ `Int` หนึ่งตัวและคืนค่าเป็น `Int` ด้วย ซึ่งเป็นการสร้างฟังก์ชันที่สามารถเพิ่มค่าตัวเลขด้วยค่า `amount` ที่กำหนดไว้ล่วงหน้าได้.
- */
-func makeAdder(amount: Int) -> (Int) -> Int {
-   // ฟังก์ชัน adder ภายใน makeAdder รับพารามิเตอร์ number และคืนค่าเป็นผลบวกของ number กับ amount
-   func adder(number: Int) -> Int {
-      return number + amount
-   }
-   return adder // makeAdder คืนค่าฟังก์ชัน adder เมื่อถูกเรียกใช้
+func applyOperation(_ operation: (Int, Int) -> Int, toOperand operandOne: Int, andOperand operandTwo: Int) -> Int {
+   return operation(operandOne, operandTwo)
 }
 
-// สร้างฟังก์ชันใหม่ที่เพิ่มค่าด้วย 10
-let addTen = makeAdder(amount: 10)
-let result = addTen(5) // เรียกใช้ฟังก์ชัน addTen กับค่า 5, ผลลัพธ์คือ 15 (5 + 10)
+// ฟังก์ชัน add เป็นตัวอย่างของฟังก์ชันที่สามารถส่งเป็นอาร์กิวเมนต์ให้กับ _operation
+func add(a: Int, b: Int) -> Int {
+   return a + b
+}
+
+// เรียกใช้ applyOperation โดยส่งฟังก์ชัน add เป็นอาร์กิวเมนต์ โดยไม่ต้องระบุชื่อพารามิเตอร์สำหรับ operation
+let result = applyOperation(add, toOperand: 5, andOperand: 10)
 print(result)
