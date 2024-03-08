@@ -1,24 +1,16 @@
 import UIKit
 
 /*
- คำสั่ง break ใน Swift ใช้เพื่อยุติการทำงานของคำสั่งควบคุมการไหลของโปรแกรมอย่างกะทันหัน สามารถใช้ได้ภายใน switch หรือ loop
+ fallthrough ใน Swift คือคำสั่งที่ใช้ในคำสั่ง switch เพื่อบอกให้โปรแกรมตกผ่านไปยัง case ถัดไปโดยไม่ต้องตรวจสอบเงื่อนไขของ case นั้นๆ
  */
 
-// ตัวอย่างการใช้คำสั่ง break ใน loop
-//for number in 1...10 {
-//   if number == 5 {
-//      break // หยุด loop เมื่อ number เท่ากับ 5
-//   }
-//   print(number) // พิมพ์ค่าของ number
-//}
-
-// ตัวอย่างการใช้คำสั่ง break ใน switch
-let someCharacter: Character = "G"
-switch someCharacter {
-case "a":
-   print("The first letter of tha")
-case "z":
-   break // หยุดการทำงานของ switch เมื่อ someCharacter เท่ากับ 'z'
+let integerToCheck = 5
+var sentence = "The number \(integerToCheck) is"
+switch integerToCheck {
+case 2, 3, 5, 7:
+   sentence += " a prime number, and also"
+   fallthrough // ใช้ fallthrough เพื่อตกผ่านไปยัง case ถัดไป
 default:
-   print("Some other character")
+   sentence += " an interger"
 }
+print(sentence)
