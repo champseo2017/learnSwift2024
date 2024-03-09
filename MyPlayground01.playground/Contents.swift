@@ -1,27 +1,18 @@
 import UIKit
 
 /*
- การกำหนดและเรียกใช้ฟังก์ชัน
- func และมีชื่อฟังก์ชัน, พารามิเตอร์, ประเภทการคืนค่า,
- และประเภทการคืนค่าถูกบ่งบอกด้วยลูกศร ->
+ ฟังก์ชัน Variadic
+ ใน Swift, ฟังก์ชัน variadic เป็นฟังก์ชันที่สามารถรับจำนวนอาร์กิวเมนต์แปรผันได้ไม่จำกัดจำนวนและสามารถเป็นประเภทใดก็ได้ มันใช้สัญลักษณ์จุดไข่ปลา (...)
  */
 
-func meetToFriends(friendName: String) -> String {
-   let meetMessage = "Hey, " + friendName + "!"
-   return meetMessage
-}
-
-print(meetToFriends(friendName: "Ashok"))
-print(meetToFriends(friendName: "Mohan"))
-
-// พารามิเตอร์และค่าที่คืนค่า
-func meetToFriends(friendName: String, isGreeted: Bool) -> String {
-   if isGreeted {
-      return "Hello again, \(friendName)"
-   } else {
-      return "Hey, \(friendName)"
+func printSum(_ numbers: Double...) {
+   var sum: Double = 0
+   for number in numbers {
+      sum += number
    }
+   print("Sum: \(sum)")
 }
 
-print(meetToFriends(friendName: "Ram", isGreeted: true))
-// พิมพ์ - Hello again, Ram!
+printSum(1.0, 2.0, 3.0) // Sum: 6.0
+printSum(10.5, 20.25, 30.75, 40.1) // Sum: 101.6
+// ฟังก์ชัน variadic มีประโยชน์เมื่อคุณต้องการรับจำนวนอาร์กิวเมนต์ที่ไม่ทราบจำนวนหรือเมื่อจำนวนอาร์กิวเมนต์อาจเปลี่ยนแปลงได้ในระหว่างการทำงาน
