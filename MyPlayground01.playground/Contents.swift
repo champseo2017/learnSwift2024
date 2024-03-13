@@ -1,25 +1,19 @@
 import UIKit
 
 /*
- Escaping closures
- Serial ใช้เมื่อต้องการควบคุมลำดับการทำงานหรือป้องกันการแข่งขันของข้อมูล
- Concurrent ใช้เมื่อต้องการประมวลผลหลายงานพร้อมกันเพื่อเพิ่มความเร็วในการทำงาน
- .main หมายถึง main dispatch queue ซึ่งเป็น serial queue ที่ใช้สำหรับการอัปเดต UI และการทำงานที่เกี่ยวข้องกับ UI
- การใช้ @escaping มีประโยชน์ในสถานการณ์ที่คุณต้องการให้งานบางอย่างทำเมื่อเงื่อนไขหรือเหตุการณ์บางอย่างเกิดขึ้น ไม่ว่าจะเป็นการโหลดข้อมูลจากเครือข่าย, การรอผลลัพธ์จากการคำนวณที่ใช้เวลานาน, หรืออื่นๆ
+ Non-escaping closure คือ closure ที่ต้องถูกเรียกใช้ภายในขอบเขตของฟังก์ชันที่ครอบคลุมมัน และไม่สามารถถูกเก็บไว้เพื่อใช้งานในภายหลังได้
  */
 
-func delayedPrint(message: String, delay: TimeInterval, completion: @escaping () -> Void) {
-   // รอเวลาที่กำหนด (เหมือนรอพิซซ่า)
-   DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-      // พิมพ์ข้อความ (เหมือนพิซซ่ามาถึง)
-      print(message)
-      // เรียกใช้งาน completion (เหมือนไปรับพิซซ่า)
-      completion()
-   }
+func performOperation(_ operation: () -> Void) {
+   print("Performing operation...")
+   operation()
+   print("Operation completed.")
 }
 
-// เรียกใช้ฟังก์ชัน
-delayedPrint(message: "Hello, World!", delay: 2.0, completion: {
-   // สิ่งที่ทำหลังจากพิมพ์ข้อความ (เหมือนกิจกรรมหลังจากรับพิซซ่า)
-   print("Printed after delay")
-})
+performOperation {
+   print("Executing closure")
+}
+
+/*
+ ในตัวอย่างนี้, performOperation เป็นฟังก์ชันที่รับ closure เป็นอาร์กิวเมนต์ ซึ่ง closure นี้จะถูกเรียกใช้ทันทีภายในฟังก์ชัน performOperation ก่อนที่ฟังก์ชันจะจบการทำงาน นี่คือลักษณะของ non-escaping closure ที่ไม่สามารถถูกเก็บหรือเรียกใช้นอกขอบเขตของฟังก์ชันที่มันถูกส่งเข้าไป
+ */
