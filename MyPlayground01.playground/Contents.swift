@@ -1,17 +1,19 @@
 import UIKit
 
 /*
- Autoclosures ใน Swift เป็นประเภทพิเศษของ closure ที่ถูกสร้างขึ้นโดยอัตโนมัติเมื่อถูกส่งเป็นอาร์กิวเมนต์ให้กับฟังก์ชัน มันถูกใช้เพื่อหน่วงการประเมินค่าของ expression จนกระทั่งมันจำเป็นต้องใช้งานจริง และจะถูกเรียกใช้โดยอัตโนมัติเมื่อฟังก์ชันนั้นถูกเรียกใช้ นี่คือตัวอย่างของ autoclosure ใน Swift
+ คำถามแบบเลือกตอบ: ตัวเลือกใดต่อไปนี้คือประเภทข้อมูลที่ถูกต้องใน Swift?
+
+ Double
+ UInt
+ Optional
+ Char
  
+  ใน Swift, ประเภทข้อมูลที่ถูกต้องจากตัวเลือกที่ให้มาคือ:
+  1. Double - ใช้สำหรับเก็บค่าทศนิยม
+  2. UInt - ใช้สำหรับเก็บค่าจำนวนเต็มที่ไม่ลบ
+  3. Optional - ใช้สำหรับเก็บค่าที่อาจเป็น nil
+  ตัวเลือกที่ไม่ถูกต้อง:
+  4. Char - Swift ใช้ String สำหรับเก็บตัวอักษร ไม่มีประเภทข้อมูล Char แต่ใช้ Character แทน
+
  */
 
-func printIftrue(_ condition: @autoclosure () -> Bool) {
-   if condition() {
-      print("Condition is true")
-   } else {
-      print("Condition is false")
-   }
-}
-
-// เรียกใช้ฟังก์ชันด้วย autoclosure
-printIftrue(2 + 2 == 4) // Condition is true
