@@ -1,15 +1,15 @@
 import UIKit
 
 /*
- ใน Swift, keyword ที่ใช้สำหรับ function คือ func
+ ตัวอย่างโค้ดที่แสดงการประกาศ mutable array ใน Swift
 
  */
 
-// ตัวอย่างโค้ดที่แสดงการใช้งาน func ใน Swift
-func sayHello() {
-   // พิมพ์ "Hello, World!" ออกมา
-   print("Hello, World")
-}
+var array = [Int]()
 
-// เรียกใช้ function sayHello
-sayHello()
+// เพิ่มข้อมูลเข้าไปใน array
+array.append(1)
+array.append(2)
+
+// พิมพ์ array ออกมา
+print(array)
