@@ -1,31 +1,37 @@
 import UIKit
 
 /*
- ประเภทของ Conditional Statements คือ Switch และ Optional
+ คลาส, โครงสร้าง, และอีนัมเมอเรชั่น
 
  */
 
-// ตัวอย่างการใช้งาน Switch
-var number = 3
-
-switch number {
-case 1:
-   print("หนึ่ง")
-case 2:
-   print("สอง")
-case 3:
-   print("สาม")
-default:
-   print("อื่นๆ")
+// คลาส
+class Vehicle {
+   var currentSpeed = 0.0
+   func description() -> String {
+      return "กำลังเดินทางด้วยความเร็ว \(currentSpeed) กิโลเมตรต่อชั่วโมง"
+   }
 }
 
-
-// ตัวอย่างการใช้งาน Optional
-var optionalNumber: Int? = nil
-
-// ตรวจสอบว่า optionalNumber มีค่าหรือไม่
-if let number = optionalNumber {
-   print("มีค่าเป็น \(number)")
-} else {
-   print("ไม่มีค่า")
+// โครงสร้าง
+struct Point {
+   var x = 0.0, y = 0.0
 }
+
+// อีนัมเมอเรชั่น
+enum CompassPoint {
+   case north
+   case south
+   case east
+   case west
+}
+
+// สร้างอินสแตนซ์ของคลาส
+let somVehicle = Vehicle()
+
+// สร้างอินสแตนซ์ของโครงสร้าง
+var somePoint = Point(x: 10.0, y: 12.0)
+
+// ใช้งานอีนัมเมอเรชั่น
+var directionToHead = CompassPoint.west
+print(directionToHead)
