@@ -6,32 +6,39 @@ import UIKit
  */
 
 // คลาส
-class Vehicle {
-   var currentSpeed = 0.0
+class Animal {
+   var name: String
+   var age: Int
+   
+   init(name: String, age: Int) {
+      self.name = name
+      self.age = age
+   }
+   
    func description() -> String {
-      return "กำลังเดินทางด้วยความเร็ว \(currentSpeed) กิโลเมตรต่อชั่วโมง"
+      return "\(name) อายุ \(age) ปี"
    }
 }
 
 // โครงสร้าง
-struct Point {
-   var x = 0.0, y = 0.0
+struct Coordinate {
+   var x: Double
+   var y: Double
 }
 
 // อีนัมเมอเรชั่น
-enum CompassPoint {
-   case north
-   case south
-   case east
-   case west
+enum Direction {
+   case up
+   case down
+   case left
+   case right
 }
 
 // สร้างอินสแตนซ์ของคลาส
-let somVehicle = Vehicle()
+let myPet = Animal(name: "Milo", age: 5)
 
 // สร้างอินสแตนซ์ของโครงสร้าง
-var somePoint = Point(x: 10.0, y: 12.0)
+var point = Coordinate(x: 10.0, y: 20.0)
 
 // ใช้งานอีนัมเมอเรชั่น
-var directionToHead = CompassPoint.west
-print(directionToHead)
+var moveDirection = Direction.up
