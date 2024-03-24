@@ -1,18 +1,18 @@
 import UIKit
 
 /*
- คำถาม: คำสั่งใดที่เป็นคำสั่งควบคุมการโอนย้ายการควบคุมใน Swift?
-
- Continue
- Break
- Fallthrough
- ทั้งหมดที่กล่าวมา
- 
- ใน Swift, คำสั่งควบคุมการโอนย้ายการควบคุมที่ใช้ได้คือ:
-  1. Continue - ใช้เพื่อข้ามการทำงานของ loop ในรอบปัจจุบันและดำเนินการต่อไปยังรอบถัดไป
- 2. Break - ใช้เพื่อหยุดการทำงานของ loop หรือ switch statement ทันที
- 3. Fallthrough - ใช้ใน switch statement เพื่อระบุว่าการทำงานควรจะต่อเนื่องไปยัง case ถัดไปโดยไม่ตรวจสอบเงื่อนไข
- ดังนั้น, คำตอบคือ "ทั้งหมดที่กล่าวมา"
+ ใน Swift, สิ่งที่คล้ายกับ do-while คือ repeat-while
+ ตัวอย่างโค้ดใช้งาน do-while ในภาษาที่รองรับ (Swift ใช้ repeat-while แทน)
 
  */
 
+// ตัวอย่างโค้ดใช้งาน repeat-while ใน Swift
+var count = 0
+
+// ลูป repeat-while จะทำงานอย่างน้อยหนึ่งครั้ง แม้เงื่อนไขจะเป็น false ตั้งแต่ครั้งแรก
+repeat {
+   // พิมพ์ค่า count ออกมา
+   print("Count is \(count)")
+   // เพิ่มค่า count ขึ้น 1
+   count += 1
+} while count < 5
