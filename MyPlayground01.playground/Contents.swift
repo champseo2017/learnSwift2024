@@ -1,24 +1,54 @@
 import UIKit
 
 /*
- ในภาษา Swift, structure และ class เป็น building block ที่สำคัญมากในการจัดระเบียบและ encapsulate code โดยเราสามารถกำหนด property และ method ให้กับ structure หรือ class เพื่อเพิ่ม functionality ที่ต้องการได้ นอกจากนี้ ภาษา Swift ยังไม่บังคับให้เราต้องแยก interface และ implementation ออกจากกัน เราสามารถกำหนดทั้งคู่ไว้ใน structure หรือ class เดียวกันได้เลย
+ ในภาษา Swift, class และ structure มีความคล้ายคลึงกันหลายอย่าง เช่น:
+ - มี property เพื่อเก็บค่า
+ - มี method เพื่อให้ functionality
+ - มี subscript เพื่อเข้าถึงค่า
+ - มี initializer เพื่อกำหนดค่าเริ่มต้น
+ - สามารถ extend เพื่อขยาย functionality เพิ่มเติมได้
+ - สามารถ conform to protocol เพื่อให้ functionality มาตรฐาน
 
+ อย่างไรก็ตาม class มี feature บางอย่างที่ structure ไม่มี ได้แก่:
+ - Inheritance: class สามารถ inherit feature จาก class อื่นได้ ในขณะที่ structure ไม่สามารถ inherit กันได้
+ - Type casting: สามารถตรวจสอบและแปลงชนิดของ instance ของ class ได้ at runtime ส่วน structure จะตรวจสอบและแปลงชนิดได้ at compile time
+ - Deinitialization: class สามารถมี deinitializer เพื่อคืนทรัพยากรเมื่อ instance ถูกทำลายได้ แต่ structure ไม่สามารถมี deinitializer ได้เพราะไม่ใช่ reference type
+ - Reference counting: class สามารถมี reference ได้มากกว่าหนึ่งอันชี้ไปยัง instance เดียวกัน
+
+ โดยทั่วไปแล้ว class จะมีความซับซ้อนกว่า structure ดังนั้นในการสร้าง data type ใหม่ ส่วนใหญ่เราจะใช้ structure หรือ enumeration มากกว่า class
  */
 
-struct Rectangle {
-   var width: Double // ความกว้างของสี่เหลี่ยมผืนผ้า
-   var height: Double // ความสูงของสี่เหลี่ยมผืนผ้า
+class Person {
+   var name: String
+   var age: Int
    
-   func area() -> Double {
-       return width * height // คำนวณพื้นที่ โดยใช้ ความกว้าง * ความสูง
+   init(name: String, age: Int) {
+      self.name = name
+      self.age = age
    }
    
-   func perimeter() -> Double {
-       return 2 * (width + height) // คำนวณเส้นรอบรูป โดยใช้ 2 * (ความกว้าง + ความสูง)
+   func introduce() {
+      print("Hello, my name is \(name) and I'm \(age) years old.")
    }
 }
 
-let rect = Rectangle(width: 5, height: 10) // สร้าง instance ของ Rectangle กำหนดความกว้างเป็น 5 และความสูงเป็น 10
 
-print(rect.area()) // พิมพ์ค่าพื้นที่ของ rect
-print(rect.perimeter()) // พิมพ์ค่าเส้นรอบรูปของ rect
+struct Point {
+   var x: Double
+   var y: Double
+   func distance(to other: Point) -> Double {
+      let dx = x - other.x
+      let dy = y - other.y
+      return sqrt(dx * dx + dy * dy)
+   }
+}
+
+// สร้าง instance ของ Person
+let john = Person(name: "John", age: 25)
+john.introduce() // พิมพ์ "Hello, my name is John and I'm 25 years old."
+ 
+// สร้าง instance ของ Point
+let p1 = Point(x: 1, y: 2)
+let p2 = Point(x: 4, y: 6)
+let distance = p1.distance(to: p2) // คำนวณระยะห่างระหว่าง p1 และ p2
+print(distance)
