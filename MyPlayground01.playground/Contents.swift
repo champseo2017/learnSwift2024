@@ -1,32 +1,24 @@
 import UIKit
 
 /*
- คำสั่ง `indirect`
- การใส่ indirect ไว้ข้างหน้า enumeration case ใน ArithmeticExp ทำให้ case นั้นสามารถมี associated value ที่เป็น ArithmeticExp ได้ ซึ่งเป็นการอนุญาตให้เกิด recursion
+ ในภาษา Swift, structure และ class เป็น building block ที่สำคัญมากในการจัดระเบียบและ encapsulate code โดยเราสามารถกำหนด property และ method ให้กับ structure หรือ class เพื่อเพิ่ม functionality ที่ต้องการได้ นอกจากนี้ ภาษา Swift ยังไม่บังคับให้เราต้องแยก interface และ implementation ออกจากกัน เราสามารถกำหนดทั้งคู่ไว้ใน structure หรือ class เดียวกันได้เลย
 
  */
 
-enum ArithmeticExp {
-   case number(Int)
-   indirect case addition(ArithmeticExp, ArithmeticExp)
-   indirect case multiplication(ArithmeticExp, ArithmeticExp)
-}
-
-let five = ArithmeticExp.number(5)
-let four = ArithmeticExp.number(4)
-let sum = ArithmeticExp.addition(five, four)
-let product = ArithmeticExp.multiplication(sum, ArithmeticExp.number(2))
-
-func evaluate (_ expression: ArithmeticExp) -> Int {
-   switch expression {
-   case let .number(value):
-      return value
-   case let .addition(left, right):
-      return evaluate(left) + evaluate(right)
-   case let .multiplication(left, right):
-      return evaluate(left) * evaluate(right)
+struct Rectangle {
+   var width: Double // ความกว้างของสี่เหลี่ยมผืนผ้า
+   var height: Double // ความสูงของสี่เหลี่ยมผืนผ้า
+   
+   func area() -> Double {
+       return width * height // คำนวณพื้นที่ โดยใช้ ความกว้าง * ความสูง
+   }
+   
+   func perimeter() -> Double {
+       return 2 * (width + height) // คำนวณเส้นรอบรูป โดยใช้ 2 * (ความกว้าง + ความสูง)
    }
 }
 
-let result = evaluate(product)
-print(result)
+let rect = Rectangle(width: 5, height: 10) // สร้าง instance ของ Rectangle กำหนดความกว้างเป็น 5 และความสูงเป็น 10
+
+print(rect.area()) // พิมพ์ค่าพื้นที่ของ rect
+print(rect.perimeter()) // พิมพ์ค่าเส้นรอบรูปของ rect
