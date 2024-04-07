@@ -18,6 +18,7 @@ import UIKit
  โดยทั่วไปแล้ว class จะมีความซับซ้อนกว่า structure ดังนั้นในการสร้าง data type ใหม่ ส่วนใหญ่เราจะใช้ structure หรือ enumeration มากกว่า class
  */
 
+// คลาส
 class Person {
    var name: String
    var age: Int
@@ -32,23 +33,20 @@ class Person {
    }
 }
 
-
+// โครงสร้าง
 struct Point {
-   var x: Double
-   var y: Double
-   func distance(to other: Point) -> Double {
-      let dx = x - other.x
-      let dy = y - other.y
-      return sqrt(dx * dx + dy * dy)
+   var x: Int
+   var y: Int
+   
+   func toString() -> String {
+      return "\(x), \(y)"
    }
 }
 
-// สร้าง instance ของ Person
-let john = Person(name: "John", age: 25)
-john.introduce() // พิมพ์ "Hello, my name is John and I'm 25 years old."
- 
-// สร้าง instance ของ Point
-let p1 = Point(x: 1, y: 2)
-let p2 = Point(x: 4, y: 6)
-let distance = p1.distance(to: p2) // คำนวณระยะห่างระหว่าง p1 และ p2
-print(distance)
+// การสร้างอินสแตนซ์ของคลาส
+let person = Person(name: "John", age: 25)
+person.introduce()
+
+// การสร้างอินสแตนซ์ของโครงสร้าง
+let point = Point(x: 3, y: 5)
+print(point.toString())
