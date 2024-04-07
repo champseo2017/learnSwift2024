@@ -1,52 +1,36 @@
 import UIKit
 
 /*
- ในภาษา Swift, class และ structure มีความคล้ายคลึงกันหลายอย่าง เช่น:
- - มี property เพื่อเก็บค่า
- - มี method เพื่อให้ functionality
- - มี subscript เพื่อเข้าถึงค่า
- - มี initializer เพื่อกำหนดค่าเริ่มต้น
- - สามารถ extend เพื่อขยาย functionality เพิ่มเติมได้
- - สามารถ conform to protocol เพื่อให้ functionality มาตรฐาน
-
- อย่างไรก็ตาม class มี feature บางอย่างที่ structure ไม่มี ได้แก่:
- - Inheritance: class สามารถ inherit feature จาก class อื่นได้ ในขณะที่ structure ไม่สามารถ inherit กันได้
- - Type casting: สามารถตรวจสอบและแปลงชนิดของ instance ของ class ได้ at runtime ส่วน structure จะตรวจสอบและแปลงชนิดได้ at compile time
- - Deinitialization: class สามารถมี deinitializer เพื่อคืนทรัพยากรเมื่อ instance ถูกทำลายได้ แต่ structure ไม่สามารถมี deinitializer ได้เพราะไม่ใช่ reference type
- - Reference counting: class สามารถมี reference ได้มากกว่าหนึ่งอันชี้ไปยัง instance เดียวกัน
-
- โดยทั่วไปแล้ว class จะมีความซับซ้อนกว่า structure ดังนั้นในการสร้าง data type ใหม่ ส่วนใหญ่เราจะใช้ structure หรือ enumeration มากกว่า class
+ 
+ ในภาษา Swift คลาสเป็นประเภทข้อมูลแบบ Reference type เมื่อมีการกำหนดค่าให้กับตัวแปรหรือส่งเป็นพารามิเตอร์ให้กับฟังก์ชัน คลาสจะไม่ถูกคัดลอก แต่จะใช้การอ้างอิงไปยังอินสแตนซ์เดียวกัน
+ 
  */
 
-// คลาส
-class Person {
-   var name: String
-   var age: Int
-   
-   init(name: String, age: Int) {
-      self.name = name
-      self.age = age
-   }
-   
-   func introduce() {
-      print("Hello, my name is \(name) and I'm \(age) years old.")
-   }
+// ตัวอย่างโค้ดด้านล่างแสดงให้เห็นถึงพฤติกรรมของ Reference type:
+// สร้างคลาส VideoPlayer
+class VideoPlayer {
+   // กำหนดพร็อพเพอร์ตี้ resolution เป็นสตริงและมีค่าเริ่มต้นเป็นสตริงว่าง
+   var resolution: String = ""
+   // กำหนดพร็อพเพอร์ตี้ name เป็นสตริงและมีค่าเริ่มต้นเป็นสตริงว่าง
+   var name: String = ""
+   // กำหนดพร็อพเพอร์ตี้ frameRate เป็น Double และมีค่าเริ่มต้นเป็น 0.0
+   var frameRate: Double = 0.0
 }
 
-// โครงสร้าง
-struct Point {
-   var x: Int
-   var y: Int
-   
-   func toString() -> String {
-      return "\(x), \(y)"
-   }
-}
+// สร้างอินสแตนซ์ของคลาส VideoPlayer และกำหนดให้กับตัวแปร video
+let video = VideoPlayer()
+// กำหนดค่า "hd" ให้กับพร็อพเพอร์ตี้ resolution ของอินสแตนซ์ video
+video.resolution = "hd"
+// กำหนดค่า "10089" ให้กับพร็อพเพอร์ตี้ name ของอินสแตนซ์ video
+video.name = "10089"
+// กำหนดค่า 25.0 ให้กับพร็อพเพอร์ตี้ frameRate ของอินสแตนซ์ video
+video.frameRate = 25.0
 
-// การสร้างอินสแตนซ์ของคลาส
-let person = Person(name: "John", age: 25)
-person.introduce()
+/*
+ ในตัวอย่างนี้ เราสร้างคลาส VideoPlayer ที่มีพร็อพเพอร์ตี้ resolution, name, และ frameRate จากนั้นเราสร้างอินสแตนซ์ของคลาส VideoPlayer และกำหนดให้กับตัวแปร video
 
-// การสร้างอินสแตนซ์ของโครงสร้าง
-let point = Point(x: 3, y: 5)
-print(point.toString())
+ เมื่อเรากำหนดค่าให้กับพร็อพเพอร์ตี้ของอินสแตนซ์ video การเปลี่ยนแปลงจะถูกบันทึกไว้ในอินสแตนซ์เดียวกัน เนื่องจากคลาสเป็น Reference type เมื่อมีการกำหนดค่าให้กับตัวแปร video จะไม่มีการคัดลอกอินสแตนซ์ แต่จะใช้การอ้างอิงไปยังอินสแตนซ์เดียวกันแทน
+
+ นี่คือลักษณะสำคัญของ Reference type ในภาษา Swift ที่แตกต่างจาก Value type เช่น โครงสร้าง (Struct) หรือ Enum ซึ่งจะมีการคัดลอกเมื่อมีการกำหนดค่าหรือส่งเป็นพารามิเตอร์
+ 
+ */
