@@ -2,45 +2,48 @@ import UIKit
 
 /*
  
- Stored Property คือ ค่าคงที่ (constant) หรือตัวแปร (variable) ที่ถูกเก็บเป็นส่วนหนึ่งของ instance ของ class หรือ struct เราสามารถกำหนดค่าเริ่มต้นให้กับ Stored Property และสามารถเปลี่ยนแปลงค่าได้ด้วย
+ Computed Property คือ Property ใน class, struct และ enumeration ที่ไม่ได้เก็บค่าจริงๆ แต่จะมีการกำหนด getter และ setter (ไม่บังคับ) เพื่อใช้ในการดึงและกำหนดค่าของ Property แบบอ้อม
  */
 
-class Person {
-   var firstName: String
-   let lastName: String
-   var age: Int = 0
+class Circle {
+   var radius: Double = 0
    
-   init(firstName: String, lastName: String) {
-      self.firstName = firstName
-      self.lastName = lastName
+   var diameter: Double {
+      get {
+         return radius * 2
+      }
+      
+      set {
+         radius = newValue / 2
+      }
+   }
+   
+   var area: Double {
+      return Double.pi * radius * radius
    }
 }
 
-let person = Person(firstName: "John", lastName: "Doe")
-print(person.firstName)
-print(person.lastName)
-print(person.age)
+let circle = Circle()
+circle.radius = 5
+print(circle.diameter)
+print(circle.area)
 
-person.firstName = "Jane"
-print(person.firstName)
+circle.diameter = 20
+print(circle.radius)
+print(circle.area)
 
 /*
- ในตัวอย่างโค้ดข้างต้น เรามี class `Person` ที่มี Stored Property ดังนี้:
- - `firstName` เป็น variable ชนิด `String` ใช้เก็บชื่อของบุคคล
- - `lastName` เป็น constant ชนิด `String` ใช้เก็บนามสกุลของบุคคล
- - `age` เป็น variable ชนิด `Int` ใช้เก็บอายุของบุคคล โดยมีค่าเริ่มต้นเป็น 0
+ ในตัวอย่างโค้ดข้างต้น เรามี class `Circle` ที่มี Stored Property และ Computed Property ดังนี้:
+ - `radius` เป็น Stored Property ชนิด `Double` ใช้เก็บรัศมีของวงกลม
+ - `diameter` เป็น Computed Property ชนิด `Double` ใช้คำนวณและกำหนดค่าเส้นผ่านศูนย์กลางของวงกลม
+   - `get` ใช้คำนวณเส้นผ่านศูนย์กลางโดยใช้สูตร `diameter = 2 * radius`
+   - `set` ใช้กำหนดค่ารัศมีเมื่อมีการกำหนดค่าให้กับ `diameter` โดยใช้สูตร `radius = diameter / 2`
+ - `area` เป็น Computed Property ชนิด `Double` ใช้คำนวณพื้นที่ของวงกลมโดยใช้สูตร `area = π * radius^2`
 
- ใน `init` ของ `Person` เรากำหนดค่าเริ่มต้นให้กับ `firstName` และ `lastName` ผ่านพารามิเตอร์ของ `init`
+ เมื่อเราสร้าง instance ของ `Circle` และกำหนดค่า `radius` เป็น 5 เมื่อเรียกใช้ `circle.diameter` จะมีการคำนวณเส้นผ่านศูนย์กลางโดยใช้ getter ของ `diameter` ซึ่งจะได้ค่าเป็น 10.0 และเมื่อเรียกใช้ `circle.area` จะมีการคำนวณพื้นที่ของวงกลมโดยใช้ค่า `radius` ปัจจุบัน ซึ่งจะได้ค่าเป็น 78.53981633974483
 
- เมื่อเราสร้าง instance ของ `Person` ด้วย `let person = Person(firstName: "John", lastName: "Doe")` ค่าของ Stored Property จะถูกกำหนดดังนี้:
- - `firstName` มีค่าเป็น "John"
- - `lastName` มีค่าเป็น "Doe"
- - `age` มีค่าเริ่มต้นเป็น 0
+ เมื่อเรากำหนดค่าให้กับ `circle.diameter` เป็น 20 setter ของ `diameter` จะถูกเรียกใช้และทำการกำหนดค่า `radius` เป็น 10.0 (ครึ่งหนึ่งของ `diameter`) เมื่อเรียกใช้ `circle.radius` จะได้ค่าเป็น 10.0 และเมื่อเรียกใช้ `circle.area` จะได้ค่าพื้นที่วงกลมใหม่เป็น 314.1592653589793
 
- เราสามารถเข้าถึงค่าของ Stored Property ได้โดยใช้ dot notation เช่น `person.firstName`, `person.lastName`, `person.age`
-
- และเนื่องจาก `firstName` และ `age` เป็น variable เราจึงสามารถเปลี่ยนแปลงค่าได้ภายหลัง เช่น `person.firstName = "Jane"` ในขณะที่ `lastName` เป็น constant จึงไม่สามารถเปลี่ยนแปลงค่าได้หลังจากกำหนดค่าแล้ว
-
- Stored Property เป็นวิธีพื้นฐานในการเก็บข้อมูลใน class หรือ struct ในภาษา Swift ซึ่งเราสามารถกำหนดค่าเริ่มต้นและเปลี่ยนแปลงค่าได้ตามต้องการ
+ Computed Property ช่วยให้เราสามารถคำนวณและกำหนดค่า Property แบบอ้อมโดยใช้ getter และ setter โดยที่ไม่จำเป็นต้องเก็บค่าจริงๆ ใน Property นั้น ทำให้สามารถเขียนโค้ดได้อย่างยืดหยุ่นและอ่านง่ายมากขึ้น
  
  */
