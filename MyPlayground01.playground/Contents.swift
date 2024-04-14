@@ -1,49 +1,25 @@
 import UIKit
 
 /*
+ Computed property แบบอ่านอย่างเดียว (Read-only computed property) คือ Computed property ที่มีเพียง getter โดยไม่มี setter ซึ่งจะคืนค่าเสมอและสามารถเข้าถึงได้ผ่าน dot syntax แต่ไม่สามารถกำหนดค่าให้มันได้
  
- Computed Property คือ Property ใน class, struct และ enumeration ที่ไม่ได้เก็บค่าจริงๆ แต่จะมีการกำหนด getter และ setter (ไม่บังคับ) เพื่อใช้ในการดึงและกำหนดค่าของ Property แบบอ้อม
+ - `Cuboid` เป็น struct ที่มี property `width`, `height` และ `depth` เป็นค่า `Double` และมีค่าเริ่มต้นเป็น 0.0
+ - `volume` เป็น read-only computed property ที่คำนวณปริมาตรของ cuboid โดยใช้สูตร `width * height * depth`
+ - เนื่องจาก `volume` เป็น read-only computed property จึงไม่สามารถกำหนดค่าให้มันได้ แต่สามารถเรียกใช้ค่าของมันได้
+
  */
 
-class Circle {
-   var radius: Double = 0
-   
-   var diameter: Double {
-      get {
-         return radius * 2
-      }
-      
-      set {
-         radius = newValue / 2
-      }
-   }
-   
-   var area: Double {
-      return Double.pi * radius * radius
+struct Cuboid {
+   var width = 0.0, height = 0.0, depth = 0.0
+   var volume: Double {
+      return width * height * depth
    }
 }
 
-let circle = Circle()
-circle.radius = 5
-print(circle.diameter)
-print(circle.area)
-
-circle.diameter = 20
-print(circle.radius)
-print(circle.area)
+let fourByFiveByTwo = Cuboid(width: 4.0, height: 5.0, depth: 2.0)
+print("the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)")
 
 /*
- ในตัวอย่างโค้ดข้างต้น เรามี class `Circle` ที่มี Stored Property และ Computed Property ดังนี้:
- - `radius` เป็น Stored Property ชนิด `Double` ใช้เก็บรัศมีของวงกลม
- - `diameter` เป็น Computed Property ชนิด `Double` ใช้คำนวณและกำหนดค่าเส้นผ่านศูนย์กลางของวงกลม
-   - `get` ใช้คำนวณเส้นผ่านศูนย์กลางโดยใช้สูตร `diameter = 2 * radius`
-   - `set` ใช้กำหนดค่ารัศมีเมื่อมีการกำหนดค่าให้กับ `diameter` โดยใช้สูตร `radius = diameter / 2`
- - `area` เป็น Computed Property ชนิด `Double` ใช้คำนวณพื้นที่ของวงกลมโดยใช้สูตร `area = π * radius^2`
-
- เมื่อเราสร้าง instance ของ `Circle` และกำหนดค่า `radius` เป็น 5 เมื่อเรียกใช้ `circle.diameter` จะมีการคำนวณเส้นผ่านศูนย์กลางโดยใช้ getter ของ `diameter` ซึ่งจะได้ค่าเป็น 10.0 และเมื่อเรียกใช้ `circle.area` จะมีการคำนวณพื้นที่ของวงกลมโดยใช้ค่า `radius` ปัจจุบัน ซึ่งจะได้ค่าเป็น 78.53981633974483
-
- เมื่อเรากำหนดค่าให้กับ `circle.diameter` เป็น 20 setter ของ `diameter` จะถูกเรียกใช้และทำการกำหนดค่า `radius` เป็น 10.0 (ครึ่งหนึ่งของ `diameter`) เมื่อเรียกใช้ `circle.radius` จะได้ค่าเป็น 10.0 และเมื่อเรียกใช้ `circle.area` จะได้ค่าพื้นที่วงกลมใหม่เป็น 314.1592653589793
-
- Computed Property ช่วยให้เราสามารถคำนวณและกำหนดค่า Property แบบอ้อมโดยใช้ getter และ setter โดยที่ไม่จำเป็นต้องเก็บค่าจริงๆ ใน Property นั้น ทำให้สามารถเขียนโค้ดได้อย่างยืดหยุ่นและอ่านง่ายมากขึ้น
- 
+ - สร้าง instance ของ `Cuboid` ชื่อ `fourByFiveByTwo` โดยกำหนดค่า `width` เป็น 4.0, `height` เป็น 5.0 และ `depth` เป็น 2.0
+ - เรียกใช้ค่าของ `volume` ผ่าน `fourByFiveByTwo.volume` ซึ่งจะคำนวณปริมาตรของ cuboid ที่มีขนาด 4.0 x 5.0 x 2.0 และพิมพ์ผลลัพธ์ "the volume of fourByFiveByTwo is 40.0"
  */
