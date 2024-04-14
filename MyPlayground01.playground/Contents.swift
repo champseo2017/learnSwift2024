@@ -1,39 +1,81 @@
 import UIKit
 
 /*
- - `globalVariable` ถูกประกาศนอกฟังก์ชันใดๆ จึงเป็นตัวแปรโกลบอลที่สามารถเข้าถึงได้จากทุกที่ในโปรแกรม
- - `localVariable` ถูกประกาศภายในฟังก์ชัน `someFunction()` จึงเป็นตัวแปรโลคัลที่สามารถเข้าถึงได้เฉพาะภายในฟังก์ชันนั้นเท่านั้น
- - เมื่อเรียกใช้ฟังก์ชัน `someFunction()`:
-   - มันพิมพ์ค่าของ `localVariable` ซึ่งเป็น 20
-   - มันยังสามารถเข้าถึง `globalVariable` และพิมพ์ค่าของมัน ซึ่งเป็น 10
- - นอกฟังก์ชัน เราสามารถพิมพ์ค่าของ `globalVariable` ได้ เพราะมันเป็นตัวแปรโกลบอล
- - อย่างไรก็ตาม เราไม่สามารถเข้าถึง `localVariable` จากภายนอกฟังก์ชันได้ เพราะมันเป็นตัวแปรโลคัลที่มีขอบเขตจำกัดอยู่ภายในฟังก์ชันเท่านั้น
-
- สรุปได้ว่า ตัวแปรโกลบอลสามารถเข้าถึงได้จากทุกที่ในโปรแกรม ในขณะที่ตัวแปรโลคัลถูกจำกัดขอบเขตอยู่ภายในฟังก์ชัน, เมธอด หรือ closure ที่มันถูกประกาศ
+ type properties
+ 
+ Stored type properties สามารถประกาศเป็น constants หรือ variables ได้ ขึ้นอยู่กับว่าค่าของมันสามารถเปลี่ยนแปลงได้หรือไม่ ในทางกลับกัน computed type properties จะถูกประกาศเป็น variable properties เสมอ เนื่องจากค่าของมันถูกคำนวณใน runtime และสามารถเปลี่ยนแปลงได้ในระหว่างการทำงานของโปรแกรม
 
  */
 
-var globalVariable = 10 // ตัวแปรโกลบอล
-
-func someFunction() {
-   var localVariable = 20 // ตัวแปรโลคัล
-   print("Local variable inside function: \(localVariable)")
-   
-   print("Global variable inside function: \(globalVariable)")
+struct SampleStructure {
+   static var storedTypeProperty = "Sample value."
+       static var computedTypeProperty: Int {
+           return 1
+       }
 }
 
-someFunction() // เรียกใช้ฟังก์ชัน
-// Output:
-// Local variable inside function: 20
-// Global variable inside function: 10
+/*
+ - `SampleStructure` เป็น struct ที่มี type properties สองตัว
+ - `storedTypeProperty` เป็น stored type property ชนิด `String` ที่มีค่าเริ่มต้นเป็น "Sample value."
+ - `computedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 1
+ */
 
-print("Global variable outside function: \(globalVariable)")
-// Output: Global variable outside function: 10
+enum SampleEnumeration {
+    static var storedTypeProperty = "Sample value."
+    static var computedTypeProperty: Int {
+        return 6
+    }
+}
+/*
+ - `SampleEnumeration` เป็น enumeration ที่มี type properties สองตัว
+ - `storedTypeProperty` เป็น stored type property ชนิด `String` ที่มีค่าเริ่มต้นเป็น "Sample value."
+ - `computedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 6
+ */
 
+class SampleClass {
+    static var storedTypeProperty = "Sample value."
+    static var computedTypeProperty: Int {
+        return 27
+    }
+    class var overrideComputedTypeProperty: Int {
+        return 107
+    }
+}
+/*
+ - `SampleClass` เป็น class ที่มี type properties สามตัว
+ - `storedTypeProperty` เป็น stored type property ชนิด `String` ที่มีค่าเริ่มต้นเป็น "Sample value."
+ - `computedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 27
+ - `overrideComputedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 107 และใช้ `class` แทน `static` เพื่อให้สามารถ override ได้ในคลาสย่อย
+ */
 
-// print("Local variable outside function: \(localVariable)")
-// ❌ Error: localVariable ไม่สามารถเข้าถึงได้จากภายนอกฟังก์ชัน
+// เรียกใช้ type properties ของ struct
+print(SampleStructure.storedTypeProperty) // Output: "Sample value."
+print(SampleStructure.computedTypeProperty) // Output: 1
+
+// เรียกใช้ type properties ของ enum
+print(SampleEnumeration.storedTypeProperty) // Output: "Sample value."
+print(SampleEnumeration.computedTypeProperty) // Output: 6
+
+// เรียกใช้ type properties ของ class
+print(SampleClass.storedTypeProperty) // Output: "Sample value."
+print(SampleClass.computedTypeProperty) // Output: 27
+print(SampleClass.overrideComputedTypeProperty) // Output: 107
+
+// เปลี่ยนแปลงค่าของ stored type property
+SampleStructure.storedTypeProperty = "Another value."
+print(SampleStructure.storedTypeProperty) // Output: "Another value."
+
+SampleClass.storedTypeProperty = "Another value."
+print(SampleClass.storedTypeProperty) // Output: "Another value."
 
 /*
+ 
+ การใช้ static ใน Swift ช่วยให้เราสามารถประกาศ type properties และ type methods ที่สามารถเรียกใช้ได้โดยตรงบน type โดยไม่จำเป็นต้องสร้าง instance ของ type นั้น
+
+เมื่อคุณประกาศ property หรือ method โดยใช้ static:
+
+มันจะกลายเป็นสมาชิกของ type เอง ไม่ใช่ของ instance ใด ๆ ของ type
+คุณสามารถเข้าถึงและเรียกใช้มันได้โดยตรงผ่าน ชื่อType.ชื่อProperty หรือ ชื่อType.ชื่อMethod() โดยไม่ต้องสร้าง instance ของ type
+สำหรับ type properties มันจะถูกแชร์ระหว่างทุก instance ของ type และสามารถเข้าถึงและแก้ไขได้จากที่ใดก็ได้ภายใน type
  
  */
