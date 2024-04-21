@@ -1,81 +1,66 @@
 import UIKit
 
 /*
- type properties
- 
- Stored type properties สามารถประกาศเป็น constants หรือ variables ได้ ขึ้นอยู่กับว่าค่าของมันสามารถเปลี่ยนแปลงได้หรือไม่ ในทางกลับกัน computed type properties จะถูกประกาศเป็น variable properties เสมอ เนื่องจากค่าของมันถูกคำนวณใน runtime และสามารถเปลี่ยนแปลงได้ในระหว่างการทำงานของโปรแกรม
-
+ โค้ดตัวอย่างนี้แสดงให้เห็นถึงการดึงค่า (query) และการกำหนดค่า (set) ให้กับ type property ในภาษา Swift โดยมีการใช้งานทั้ง stored type property และ computed type property ใน struct, enum และ class
  */
 
 struct SampleStructure {
    static var storedTypeProperty = "Sample value."
-       static var computedTypeProperty: Int {
-           return 1
-       }
 }
-
-/*
- - `SampleStructure` เป็น struct ที่มี type properties สองตัว
- - `storedTypeProperty` เป็น stored type property ชนิด `String` ที่มีค่าเริ่มต้นเป็น "Sample value."
- - `computedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 1
- */
 
 enum SampleEnumeration {
-    static var storedTypeProperty = "Sample value."
-    static var computedTypeProperty: Int {
-        return 6
-    }
+   static var computedTypeProperty: Int {
+      return 6
+   }
 }
-/*
- - `SampleEnumeration` เป็น enumeration ที่มี type properties สองตัว
- - `storedTypeProperty` เป็น stored type property ชนิด `String` ที่มีค่าเริ่มต้นเป็น "Sample value."
- - `computedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 6
- */
 
 class SampleClass {
-    static var storedTypeProperty = "Sample value."
-    static var computedTypeProperty: Int {
-        return 27
-    }
-    class var overrideComputedTypeProperty: Int {
-        return 107
-    }
+   static var computedTypeProperty: Int {
+      return 27
+   }
 }
-/*
- - `SampleClass` เป็น class ที่มี type properties สามตัว
- - `storedTypeProperty` เป็น stored type property ชนิด `String` ที่มีค่าเริ่มต้นเป็น "Sample value."
- - `computedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 27
- - `overrideComputedTypeProperty` เป็น read-only computed type property ชนิด `Int` ที่คืนค่า 107 และใช้ `class` แทน `static` เพื่อให้สามารถ override ได้ในคลาสย่อย
- */
 
-// เรียกใช้ type properties ของ struct
-print(SampleStructure.storedTypeProperty) // Output: "Sample value."
-print(SampleStructure.computedTypeProperty) // Output: 1
-
-// เรียกใช้ type properties ของ enum
-print(SampleEnumeration.storedTypeProperty) // Output: "Sample value."
-print(SampleEnumeration.computedTypeProperty) // Output: 6
-
-// เรียกใช้ type properties ของ class
-print(SampleClass.storedTypeProperty) // Output: "Sample value."
-print(SampleClass.computedTypeProperty) // Output: 27
-print(SampleClass.overrideComputedTypeProperty) // Output: 107
-
-// เปลี่ยนแปลงค่าของ stored type property
+print(SampleStructure.storedTypeProperty) // Prints "Sample value."
 SampleStructure.storedTypeProperty = "Another value."
-print(SampleStructure.storedTypeProperty) // Output: "Another value."
+print(SampleStructure.storedTypeProperty)
 
-SampleClass.storedTypeProperty = "Another value."
-print(SampleClass.storedTypeProperty) // Output: "Another value."
+print(SampleEnumeration.computedTypeProperty)
+print(SampleClass.computedTypeProperty)
 
 /*
- 
- การใช้ static ใน Swift ช่วยให้เราสามารถประกาศ type properties และ type methods ที่สามารถเรียกใช้ได้โดยตรงบน type โดยไม่จำเป็นต้องสร้าง instance ของ type นั้น
+ คำอธิบาย:
 
-เมื่อคุณประกาศ property หรือ method โดยใช้ static:
+ 1. `SampleStructure` เป็น struct ที่มี stored type property ชื่อ `storedTypeProperty` ซึ่งมีค่าเริ่มต้นเป็น "Sample value."
 
-มันจะกลายเป็นสมาชิกของ type เอง ไม่ใช่ของ instance ใด ๆ ของ type
-คุณสามารถเข้าถึงและเรียกใช้มันได้โดยตรงผ่าน ชื่อType.ชื่อProperty หรือ ชื่อType.ชื่อMethod() โดยไม่ต้องสร้าง instance ของ type
-สำหรับ type properties มันจะถูกแชร์ระหว่างทุก instance ของ type และสามารถเข้าถึงและแก้ไขได้จากที่ใดก็ได้ภายใน type
+ 2. `SampleEnumeration` เป็น enumeration ที่มี computed type property ชื่อ `computedTypeProperty` ซึ่งคำนวณค่าและส่งค่ากลับเป็น 6
+
+ 3. `SampleClass` เป็น class ที่มี computed type property ชื่อ `computedTypeProperty` ซึ่งคำนวณค่าและส่งค่ากลับเป็น 27
+
+ 4. `print(SampleStructure.storedTypeProperty)` พิมพ์ค่าของ `storedTypeProperty` ซึ่งเป็น "Sample value." ในตอนแรก
+
+ 5. `SampleStructure.storedTypeProperty = "Another value."` กำหนดค่าใหม่ให้กับ `storedTypeProperty` เป็น "Another value."
+
+ 6. `print(SampleStructure.storedTypeProperty)` พิมพ์ค่าของ `storedTypeProperty` หลังจากที่มีการกำหนดค่าใหม่ ซึ่งจะเป็น "Another value."
+
+ 7. `print(SampleEnumeration.computedTypeProperty)` พิมพ์ค่าของ `computedTypeProperty` ใน `SampleEnumeration` ซึ่งจะเป็น 6
+
+ 8. `print(SampleClass.computedTypeProperty)` พิมพ์ค่าของ `computedTypeProperty` ใน `SampleClass` ซึ่งจะเป็น 27
+
+ โค้ดตัวอย่างนี้แสดงให้เห็นการใช้งาน stored type property และ computed type property ในโครงสร้างข้อมูลต่างๆ เช่น struct, enum และ class ในภาษา Swift โดยสามารถเข้าถึงและกำหนดค่าให้กับ type property ได้โดยใช้ชื่อของ type นั้นๆ ตามด้วยชื่อของ property
  
- */
+ หากต้องการให้ computed property สามารถกำหนดค่าได้ จะต้องเพิ่ม setter ให้กับ property นั้น
+ enum SampleEnumeration {
+     static var computedTypeProperty: Int {
+         get {
+             return 6
+         }
+         set {
+             // Perform some action when the property is set
+             print("New value is \(newValue)")
+         }
+     }
+ }
+ 
+ การเลือกใช้ static หรือ class ขึ้นอยู่กับความต้องการและพฤติกรรมที่คุณต้องการสำหรับ type property นั้นๆ หากคุณไม่ต้องการให้ subclass สามารถ override property ได้ หรือหากคุณกำหนด type property ใน struct หรือ enum คุณสามารถใช้ static ได้ แต่หากคุณต้องการให้ subclass สามารถ override property ได้ คุณสามารถใช้ class ได้ใน class
+ 
+*/
